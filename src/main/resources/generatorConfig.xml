@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+    <context id="context" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql:///book"
+                        userId="root"
+                        password="">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="me.yqiang.book_pojo" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="me.yqiang.book_dao"  targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="me.yqiang.book_dao"  targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <table schema="" tableName="t_user" domainObjectName="User">
+            <!--<generatedKey column="user_id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
+        </table>
+
+        <table tableName="t_item" domainObjectName="Item">
+            <!--<generatedKey column="item_id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
+        </table>
+        <table tableName="t_itemCat" domainObjectName="ItemCat">
+            <!--<generatedKey column="id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
+        </table>
+        <table tableName="t_cart" domainObjectName="Cart">
+            <!--<generatedKey column="cart_id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
+        </table>
+        <table tableName="t_order" domainObjectName="Order">
+            <!--<generatedKey column="order_id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
+        </table>
+        <table tableName="t_orderdetail" domainObjectName="Orderdetail">
+            <!--<generatedKey column="id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
+        </table>
+        <table tableName="t_bigimg" domainObjectName="Bigimg">
+            <!--<generatedKey column="id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
+        </table>
+
+    </context>
+</generatorConfiguration>
