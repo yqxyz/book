@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import me.yqiang.book_dao.OrderdetailMapper;
 import me.yqiang.book_interface.ItemService;
+import me.yqiang.book_interface.RecommenderService;
 import me.yqiang.book_pojo.Item;
 import me.yqiang.book_pojo.ItemIdPojo;
 import me.yqiang.book_pojo.Orderdetail;
@@ -196,23 +197,13 @@ public class ItemController {
     }
 
 
+    @Autowired
+    RecommenderService recommenderService;
     @RequestMapping("/recommend/{num}/{id}")
     @ResponseBody
     public BResult recommender(@PathVariable Long id, @PathVariable Integer num) throws TasteException {
 
-        MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setServerName("localhost");
-        dataSource.setDatabaseName("book");
-        dataSource.setUser("root");
-        dataSource.setPassword("");
-        JDBCDataModel model = new MySQLJDBCDataModel(dataSource, "data",
-                "user_id", "item_id", "rate","time");
-
-        ReloadFromJDBCDataModel dataModel = new ReloadFromJDBCDataModel(model);
-        ItemSimilarity similarity = new EuclideanDistanceSimilarity(dataModel);
-        Recommender r = new GenericItemBasedRecommender(dataModel, similarity);
-
-        List<RecommendedItem> recommendedItemList = r.recommend(id, num);
+        List<RecommendedItem> recommendedItemList = recommenderService.recommenderItem(id, num);
         if(recommendedItemList.size()>0){
             List<Item> list = new LinkedList<>();
             for(RecommendedItem recommendedItem : recommendedItemList){

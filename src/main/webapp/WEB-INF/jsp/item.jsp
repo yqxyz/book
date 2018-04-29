@@ -267,7 +267,7 @@
                                                 <div id="tab-1" class="tab-pane active">
                                                     <div class="panel-body">
                                                         <div class="row recommend1">
-                                                            无推荐结果
+                                                            <h1>无推荐结果</h1>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -275,7 +275,7 @@
                                                 <div id="tab-2" class="tab-pane">
                                                     <div class="panel-body">
                                                         <div class="row recommend">
-                                                            <h4>登录购买后产生推荐</h4>
+                                                            <h1>登录购买后产生推荐</h1>
                                                         </div>
                                                     </div>
                                                 </div>
