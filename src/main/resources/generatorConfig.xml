@@ -7,6 +7,12 @@
 
 
     <context id="context" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql:///book"
                         userId="root"
@@ -31,26 +37,19 @@
         </javaClientGenerator>
 
         <table schema="" tableName="t_user" domainObjectName="User">
-            <!--<generatedKey column="user_id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
         </table>
 
         <table tableName="t_item" domainObjectName="Item">
-            <!--<generatedKey column="item_id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
         </table>
         <table tableName="t_itemCat" domainObjectName="ItemCat">
-            <!--<generatedKey column="id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
         </table>
         <table tableName="t_cart" domainObjectName="Cart">
-            <!--<generatedKey column="cart_id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
         </table>
         <table tableName="t_order" domainObjectName="Order">
-            <!--<generatedKey column="order_id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
         </table>
         <table tableName="t_orderdetail" domainObjectName="Orderdetail">
-            <!--<generatedKey column="id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
         </table>
         <table tableName="t_bigimg" domainObjectName="Bigimg">
-            <!--<generatedKey column="id" sqlStatement=" select  replace(uuid(),'-','')"/>-->
         </table>
 
     </context>
