@@ -9,7 +9,43 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-    <context:property-placeholder location="classpath:db.properties"/>
+    <context:property-placeholder location="classpath:*.properties"/>
+
+    <!--<context:property-placeholder location="classpath:mail.properties" />-->
+    <!--<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">-->
+        <!--<property name="host" value="${mail.host}" />-->
+        <!--&lt;!&ndash;<property name="port" value="${mail.smtp.port}" />&ndash;&gt;-->
+        <!--<property name="username" value="${mail.username}" />-->
+        <!--<property name="password" value="${mail.password}" />-->
+        <!--<property name="port" value="25" />-->
+        <!--&lt;!&ndash;<property name="defaultEncoding" value="UTF-8"></property>&ndash;&gt;-->
+        <!--<property name="javaMailProperties">-->
+            <!--<props>-->
+                <!--<prop key="mail.transport.protocol">smtp</prop>-->
+                <!--<prop key="mail.smtp.auth">true</prop>-->
+                <!--<prop key="mail.smtp.starttls.enable">true</prop>-->
+                <!--&lt;!&ndash;<prop key="mail.debug">true</prop>&ndash;&gt;-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+    <!--<bean-->
+            <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+        <!--<property name="templateLoaderPath" value="/templates" />-->
+        <!--<property name="defaultEncoding" value="UTF-8" />-->
+    <!--</bean>-->
+    <!--&lt;!&ndash; freemarker视图解析器 &ndash;&gt;-->
+    <!--<bean-->
+            <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+        <!--<property name="suffix" value=".ftl" />-->
+        <!--<property name="contentType" value="text/html;charset=UTF-8" />-->
+        <!--&lt;!&ndash; 此变量值为pageContext.request, 页面使用方法：rc.contextPath &ndash;&gt;-->
+        <!--<property name="requestContextAttribute" value="rc" />-->
+        <!--<property name="order" value = "1" />-->
+    <!--</bean>-->
+
+
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"></property>
         <property name="url" value="${jdbc.url}"></property>
@@ -41,7 +77,6 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-
         <property name="basePackage" value="me.yqiang.book_dao"></property>
     </bean>
 

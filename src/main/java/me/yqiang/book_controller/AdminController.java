@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+
 @Controller
 public class AdminController {
     @RequestMapping("/admin")
@@ -47,6 +48,11 @@ public class AdminController {
         List<Bigimg> bigimgs = itemService.listBigImg();
         return bigimgs;
     }
-
+//    @Autowired
+//    MailSendService mailSendService;
+//    @RequestMapping("/sendMail")
+//    public void send() throws TemplateException, IOException, MessagingException {
+//        mailSendService.sendMail("test","asdggasg","quentinyy@qq.com");
+//    }
 
 }
