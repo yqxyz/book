@@ -72,14 +72,13 @@
         </property>
     </bean>
 
+
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="me.yqiang.book_dao"></property>
-    </bean>
+
 
     <tx:annotation-driven/>
-
+    <import resource="spring-mybatis.xml"/>
 </beans>
