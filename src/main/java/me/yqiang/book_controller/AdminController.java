@@ -18,12 +18,12 @@ public class AdminController {
 
         return "admin/index";
     }
-    @RequestMapping("/bigImgList")
+    @RequestMapping("/admin/bigImgList")
     public String bigImgList() {
 
         return "admin/bigImgList";
     }
-    @RequestMapping("/bigImgAdd")
+    @RequestMapping("/admin/bigImgAdd")
     public String bigImgAdd() {
 
         return "admin/bigImgAdd";

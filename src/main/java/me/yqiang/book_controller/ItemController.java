@@ -29,11 +29,11 @@ import java.util.*;
 public class ItemController {
     @Autowired
     ItemService itemService;
-    @RequestMapping("itemList")
+    @RequestMapping("/admin/itemList")
      public String itemList(){
          return "admin/itemList";
      }
-    @RequestMapping("itemAdd")
+    @RequestMapping("/admin/itemAdd")
     public String itemAdd(){
         return "admin/itemAdd";
     }

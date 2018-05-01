@@ -77,7 +77,7 @@ public class OrderController {
             return null;
         }
     }
-    @RequestMapping("/allOrderList")
+    @RequestMapping("/admin/orderList")
     public String orderList() {
 
         return "admin/orderList";

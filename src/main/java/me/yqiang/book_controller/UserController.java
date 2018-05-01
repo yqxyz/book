@@ -44,6 +44,7 @@ public class UserController {
             User user = (User)bResult.getData();
             CookieUtils.setCookie(request,response,"userName",user.getUserName());
             CookieUtils.setCookie(request,response,"userId",user.getUserId()+"");
+            CookieUtils.setCookie(request,response,"isadmin",user.getIsadmin()+"");
             BResult bResult1 = cartService.get(user.getUserId());
             Map<String,BResult> map = new HashMap<>();
             map.put("login",bResult);
@@ -70,6 +71,7 @@ public class UserController {
 
         CookieUtils.deleteCookie(request,response,"userName");
         CookieUtils.deleteCookie(request,response,"userId");
+        CookieUtils.deleteCookie(request,response,"isadmin");
         return "redirect:/index";
     }
     @RequestMapping("/user/changeAddress")

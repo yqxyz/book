@@ -62,44 +62,44 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/itemCatList.html">
+                    <a href="/admin/itemCatList.html">
                         <i class="fas fa-list-ul"></i>
                         <span class="nav-tabel">分类列表</span>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="/itemCatAdd.html">
+                    <a href="/admin/itemCatAdd.html">
                         <i class="fas fa-plus-square"></i>
                         <span class="nav-tabel">添加分类</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/itemAdd.html">
+                    <a href="/admin/itemAdd.html">
                         <i class="fas fa-plus-square"></i>
                         <span class="nav-tabel">添加书籍</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/itemList.html">
+                    <a href="/admin/itemList.html">
                         <i class="fas fa-list-ul"></i>
                         <span class="nav-tabel">书籍列表</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/allOrderList.html">
+                    <a href="/admin/orderList.html">
                         <i class="fas fa-list-ul"></i>
                         <span class="nav-tabel">订单列表</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/bigImgList.html">
+                    <a href="/admin/bigImgList.html">
                         <i class="fas fa-list-ul"></i>
                         <span class="nav-tabel">大图列表</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/bigImgAdd.html">
+                    <a href="/admin/bigImgAdd.html">
                         <i class="fas fa-list-ul"></i>
                         <span class="nav-tabel">添加大图</span>
                     </a>
@@ -118,7 +118,7 @@
                     <li><span class="m-r-sm text-muted welcome-message">欢迎来到 YUN+ 后台UI主题</span></li>
 
                     <li>
-                        <a href="login.html">
+                        <a href="/user/logout.html">
                             <i class="fas fa-sign-out-alt"></i> 退出
                         </a>
                     </li>

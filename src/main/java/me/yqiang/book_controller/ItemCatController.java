@@ -18,12 +18,12 @@ import java.util.List;
 public class ItemCatController {
     @Autowired
     ItemCatServicce itemCatServicce;
-    @RequestMapping("itemCatAdd")
+    @RequestMapping("/admin/itemCatAdd")
     public String addItemCat(){
         return "admin/itemCatAdd";
     }
 
-    @RequestMapping("/itemCatList")
+    @RequestMapping("/admin/itemCatList")
     public String itemCatPage(){
         return "admin/itemCatList";
     }

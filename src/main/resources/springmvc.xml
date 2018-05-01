@@ -33,4 +33,13 @@
             <value>UTF-8</value>
         </property>
     </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/*"/>
+            <mvc:mapping path="/admin*"/>
+            <bean class="me.yqiang.book_interceptor.AdminInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
