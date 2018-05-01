@@ -1,8 +1,6 @@
 package me.yqiang.book_service;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import me.yqiang.book_dao.BigimgMapper;
 import me.yqiang.book_dao.ItemMapper;
 import me.yqiang.book_dao.OrderdetailMapper;

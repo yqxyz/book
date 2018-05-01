@@ -5,7 +5,6 @@ import me.yqiang.book_interface.UserService;
 import me.yqiang.book_pojo.User;
 import me.yqiang.book_pojo.UserExample;
 import me.yqiang.pojo.BResult;
-import me.yqiang.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

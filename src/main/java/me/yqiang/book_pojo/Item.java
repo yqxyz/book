@@ -17,6 +17,14 @@ public class Item {
 
     private String[] images;
 
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
+    }
+
     private Long cid;
 
     private Integer status;
@@ -81,14 +89,6 @@ public class Item {
 
     public void setImage(String image) {
         this.image = image == null ? null : image.trim();
-    }
-
-    public String[] getImages() {
-        return images;
-    }
-
-    public void setImages(String[] images) {
-        this.images = images;
     }
 
     public Long getCid() {

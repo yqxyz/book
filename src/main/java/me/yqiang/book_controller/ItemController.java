@@ -1,7 +1,6 @@
 package me.yqiang.book_controller;
 
 import com.github.pagehelper.Page;
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import me.yqiang.book_dao.OrderdetailMapper;
 import me.yqiang.book_interface.ItemService;
 import me.yqiang.book_interface.RecommenderService;
@@ -11,14 +10,7 @@ import me.yqiang.book_pojo.Orderdetail;
 import me.yqiang.pojo.BResult;
 import me.yqiang.utils.IDUtils;
 import org.apache.mahout.cf.taste.common.TasteException;
-import org.apache.mahout.cf.taste.impl.model.jdbc.MySQLJDBCDataModel;
-import org.apache.mahout.cf.taste.impl.model.jdbc.ReloadFromJDBCDataModel;
-import org.apache.mahout.cf.taste.impl.recommender.GenericItemBasedRecommender;
-import org.apache.mahout.cf.taste.impl.similarity.EuclideanDistanceSimilarity;
-import org.apache.mahout.cf.taste.model.JDBCDataModel;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
-import org.apache.mahout.cf.taste.recommender.Recommender;
-import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
