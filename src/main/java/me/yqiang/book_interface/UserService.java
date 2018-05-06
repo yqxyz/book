@@ -14,4 +14,8 @@ public interface UserService {
     List<User> userList();
 
     BResult delUser(Long id);
+
+    String validate(String username);
+
+    String validate1(String email);
 }

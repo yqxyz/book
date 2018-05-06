@@ -50,6 +50,12 @@
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="密码">
+
+            </div>
+            <div class="form-group">
+                <input type="text" name="code" class="form-control pull-left" placeholder="验证码" style="width: 130px">
+                <img src="/validate" class="code pull-right">
+                <label id="code-error" class="error" for="code" style="display: none">请输入验证码</label>
             </div>
             <div class="form-group">
                 <div class="checkbox i-checks pull-left">
@@ -80,6 +86,12 @@
 <!-- iCheck -->
 <script src="${pageContext.request.contextPath}/css/plugins/iCheck/icheck.min.js"></script>
 <script>
+
+
+    $('.code').click(function () {
+        console.log(1)
+        $(this).attr('src','/validate?'+new Date().getTime());
+    });
     $(document).ready(function () {
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
@@ -113,10 +125,18 @@
     $().ready(function () {
 // 在键盘按下并释放及提交后验证提交表单
         $(".m-t").validate({
+            //onfocusout: function(element) { $(element).valid(); },
             rules: {
                 userName: {
                     required: true,
-                    minlength: 2
+                    minlength: 2,
+                    remote:{
+                        type:"POST",
+                        url:"/user/validate", //请求地址
+                        data:{
+                            username:function(){ return $("input[name=userName]").val(); }
+                        }
+                    }
                 },
                 password: {
                     required: true,
@@ -124,20 +144,46 @@
                 },
                 email: {
                     required: true,
-                    email: true
+                    email: true,
+                    remote:{
+                        type:"POST",
+                        url:"/user/validate1", //请求地址
+                        data:{
+                            username:function(){ return $("input[name=email]").val(); }
+                        }
+                    }
+                },
+                code:{
+                    required:true,
+                    remote:{
+                        type:"POST",
+                        url:"/validate1", //请求地址
+                        data:{
+                            code:function(){ return $("input[name=code]").val(); }
+                        }
+                    }
                 },
                 agree: "required"
             },
             messages: {
                 userName: {
                     required: "请输入用户名",
-                    minlength: "用户名必需由两个字母组成"
+                    minlength: "用户名必需由两个字母组成",
+                    remote:"用户名已存在"
                 },
                 password: {
                     required: "请输入密码",
                     minlength: "密码长度不能小于 5 个字母"
                 },
-                email: "请输入一个正确的邮箱",
+                email: {
+                    required:"请输入邮箱",
+                    email:"请输入一个正确的邮箱",
+                    remote:"邮箱已存在"
+                },
+                code:{
+                    required:"请输入验证码",
+                    remote:"验证码错误"
+                },
                 agree: "请同意协议"
             }
         })

@@ -5,13 +5,11 @@ import me.yqiang.book_pojo.User;
 import me.yqiang.book_service.UserServiceImpl;
 import me.yqiang.pojo.BResult;
 import me.yqiang.utils.CookieUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -43,12 +41,23 @@ public class UserController {
         BResult bResult = userService.addUser(user);
         return bResult;
     }
+    @RequestMapping("/user/validate")
+    @ResponseBody
+    public String userValidate(String username){
+        String i = userService.validate(username);
+        return i;
+    }
+    @RequestMapping("/user/validate1")
+    @ResponseBody
+    public String userValidate1(String email){
+        String i = userService.validate1(email);
+        return i;
+    }
 
     @RequestMapping("/admin/userList")
     public String userList(){
         return "admin/userList";
     }
-
     @RequestMapping("/user/login")
     @ResponseBody
     public Map<String,BResult> login(String userName, String password, HttpServletRequest request, HttpServletResponse response){

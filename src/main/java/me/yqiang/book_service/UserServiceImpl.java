@@ -7,6 +7,8 @@ import me.yqiang.book_pojo.UserExample;
 import me.yqiang.pojo.BResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
+
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public BResult addUser(User user) {
         //user.setUserId(IDUtils.genItemId());
+        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         int insert = userMapper.insert(user);
         return BResult.ok();
     }
@@ -30,7 +33,7 @@ public class UserServiceImpl implements UserService {
             return BResult.build(400,"用户名或密码错误");
         }
         User user = list.get(0);
-        if(!password.equals(user.getPassword())){
+        if(!(DigestUtils.md5DigestAsHex(password.getBytes())).equals(user.getPassword())){
             return BResult.build(400,"用户名与密码不匹配");
         }
         user.setPassword(null);
@@ -59,6 +62,28 @@ public class UserServiceImpl implements UserService {
     public List<User> userList() {
         List<User> users = userMapper.selectByExample(null);
         return users;
+    }
+
+    @Override
+    public String validate(String username) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserNameEqualTo(username);
+        List<User> users = userMapper.selectByExample(userExample);
+        if(users.size()==0)
+            return "true";
+        else
+            return "false";
+    }
+
+    @Override
+    public String validate1(String email) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andEmailEqualTo(email);
+        List<User> users = userMapper.selectByExample(userExample);
+        if(users.size()==0)
+            return "true";
+        else
+            return "false";
     }
 
     @Override
