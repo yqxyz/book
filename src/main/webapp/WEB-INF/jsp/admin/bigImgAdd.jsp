@@ -111,6 +111,12 @@
                         <span class="nav-tabel">添加大图</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/admin/userList.html">
+                        <i class="fas fa-list-ul"></i>
+                        <span class="nav-tabel">用户管理</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav><!-- 侧边导航菜单 结束 -->
@@ -136,10 +142,10 @@
         <!-- 右侧内容div .wrapper 开始 -->
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>添加书籍</h2>
+                <h2>添加大图</h2>
                 <ol class="breadcrumb">
                     <li><a href="index.html">首页</a></li>
-                    <li class="active"><strong>添加书籍</strong></li>
+                    <li class="active"><strong>添加大图</strong></li>
                 </ol>
             </div>
             <div class="col-lg-2"></div>

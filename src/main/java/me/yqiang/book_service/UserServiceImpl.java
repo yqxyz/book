@@ -54,4 +54,19 @@ public class UserServiceImpl implements UserService {
         }else
             return BResult.build(400,"error");
     }
+
+    @Override
+    public List<User> userList() {
+        List<User> users = userMapper.selectByExample(null);
+        return users;
+    }
+
+    @Override
+    public BResult delUser(Long id) {
+        int i = userMapper.deleteByPrimaryKey(id);
+        if(i==1)
+            return BResult.ok();
+        else
+            return BResult.build(400,"");
+    }
 }

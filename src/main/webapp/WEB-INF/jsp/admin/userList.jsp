@@ -28,9 +28,10 @@
     <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
     <!-- Yun+ UI css主文件 -->
     <link href="${pageContext.request.contextPath}/css/yuntheme.css" rel="stylesheet">
-
     <link href="${pageContext.request.contextPath}/css/plugins/footable/footable.bootstrap.min.css" rel="stylesheet">
+
     <link href="${pageContext.request.contextPath}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
 </head>
 <body>
 <div id="wrapper">
@@ -91,7 +92,7 @@
                         <span class="nav-tabel">订单列表</span>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="/admin/bigImgList.html">
                         <i class="fas fa-list-ul"></i>
                         <span class="nav-tabel">大图列表</span>
@@ -104,7 +105,7 @@
                         <span class="nav-tabel">添加大图</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/admin/userList.html">
                         <i class="fas fa-list-ul"></i>
                         <span class="nav-tabel">用户管理</span>
@@ -135,10 +136,10 @@
         <!-- 右侧内容div .wrapper 开始 -->
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>大图列表</h2>
+                <h2>分类列表</h2>
                 <ol class="breadcrumb">
                     <li><a href="index.html">首页</a></li>
-                    <li class="active"><strong>大图列表</strong></li>
+                    <li class="active"><strong>分类列表</strong></li>
                 </ol>
             </div>
             <div class="col-lg-2"></div>
@@ -153,7 +154,6 @@
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
-
                                     <h4 class="modal-title">确认删除</h4>
                                 </div>
 
@@ -165,33 +165,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
 
-
-                            <table id="footable" class="footable table" data-paging="true" data-paging-size="5"
-                                   data-show-toggle="false"></table>
-                        </div>
+                    <div class="ibox-title">
+                        <h5>分类列表</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <table id="footable" class="footable table" data-paging="true" data-paging-size="5"
+                               data-show-toggle="false"></table>
                     </div>
                 </div>
+
+            </div>
+
+
+        </div>
+        <!-- 右侧内容div .wrapper 结束 -->
+
+        <div class="footer fixed">
+            <div class="pull-right">
+                100000个访问<strong>总250w</strong>个访问.
+            </div>
+            <div>
+                <strong>Copyright</strong> yuntheme.com &copy; 2015
             </div>
         </div>
+    </div><!-- 右侧内容 结束 -->
 
-
-    </div>
-    <!-- 右侧内容div .wrapper 结束 -->
-
-    <div class="footer fixed">
-        <div class="pull-right">
-            100000个访问<strong>总250w</strong>个访问.
-        </div>
-        <div>
-            <strong>Copyright</strong> yuntheme.com &copy; 2015
-        </div>
-    </div>
-</div><!-- 右侧内容 结束 -->
-
-<!-- 右上角隐藏通知，设置页 -->
+    <!-- 右上角隐藏通知，设置页 -->
 </div>
 
 <!-- 引入主要jQuery 等js框架 -->
@@ -200,49 +200,43 @@
 <script src="${pageContext.request.contextPath}/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/pace/pace.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.serializejson.js"></script>
-
-<script src="${pageContext.request.contextPath}/css/plugins/footable/footable.js"></script>
 <script src="${pageContext.request.contextPath}/css/plugins/toastr/toastr.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/plugins/confirmation/bootstrap-confirmation.js"></script>
-
+<script src="${pageContext.request.contextPath}/css/plugins/footable/footable.js"></script>
 
 <script>
-    $(function ($) {
 
+    $(function ($) {
         $('#footable').footable({
             "columns": [
-                {"name": "itemId", "title": "ID", "visible": false, "filterable": false},
-                {"name": "name", "title": "name"},
+                {"name": "userId", "title": "ID", "filterable": false},
+                {"name": "userName", "title": "用户名"},
+                {"name": "email", "title": "邮箱"},
+                {"name": "password", "title": "密码"},
                 {
-                    "name": "img", "title": "图片",
+                    "name": "userId", "title": "操作",
                     "formatter": function (value, options, rowData) {
-                        return "<img style='height:50px;width:100px' src='/img/item/" + value + ".jpg'></img>";
-                    }
-                },
-                {
-                    "name": "id", "title": "操作",
-                    "formatter": function (value, options, rowData) {
-                        return "<a><span id='delBtn' bid='" + rowData.id + "' class=\"btn-white btn btn-xs\">删除</span></a>";
+                        return "<button  class='btn-delete btn btn-primary btn-xs' userid='" + rowData.userId + "'>删除</button>";
                     }
                 }
             ],
-            "rows": $.get("/bigImg/list")
+            "rows": $.get("/user/list")
         });
 
-        var id = '';
 
-        $(document).on('click', '#delBtn', function () {
-            id = $(this).attr('bid');
+        var itemId;
+        $(document).on('click', '.btn-delete', function () {
+            itemId = $(this).attr('userid');
             $('#myModal6').modal('show');
         });
+
         $('#cancel').click(function () {
-            id = '';
+
             $('#myModal6').modal('hide');
+            itemId = '';
         });
         $('#confirm').click(function () {
             $('#myModal6').modal('hide');
-            $.post("/bigImg/del", {id: id}, function (data) {
+            $.post("/user/del", {id: itemId}, function (data) {
                 if (data.status == 200) {
                     a = 1;
                     toastr.options = {
@@ -250,10 +244,10 @@
                         "timeOut": "1000"
                     };
                     toastr.options.onHidden = function () {
-                        window.location.href = "${pageContext.request.contextPath}/bigImgList.html"
+                        window.location.href = "${pageContext.request.contextPath}/admin/userList.html"
                     };
                     toastr.options.onclick = function () {
-                        window.location.href = "${pageContext.request.contextPath}/bigImgList.html"
+                        window.location.href = "${pageContext.request.contextPath}/admin/userList.html"
                     };
                     toastr.success("删除成功");
 
@@ -265,8 +259,7 @@
                     toastr.error("删除失败");
                 }
             })
-        });
-
+        })
 
     });
 

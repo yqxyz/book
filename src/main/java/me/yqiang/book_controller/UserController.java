@@ -5,6 +5,7 @@ import me.yqiang.book_pojo.User;
 import me.yqiang.book_service.UserServiceImpl;
 import me.yqiang.pojo.BResult;
 import me.yqiang.utils.CookieUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -26,6 +28,11 @@ public class UserController {
     public String loginIndex(){
         return "login";
     }
+
+    @RequestMapping("/admin/login")
+    public String loginbe(){
+        return "admin/login";
+    }
     @RequestMapping("/register")
     public String registerIndex(){
         return "register";
@@ -36,6 +43,12 @@ public class UserController {
         BResult bResult = userService.addUser(user);
         return bResult;
     }
+
+    @RequestMapping("/admin/userList")
+    public String userList(){
+        return "admin/userList";
+    }
+
     @RequestMapping("/user/login")
     @ResponseBody
     public Map<String,BResult> login(String userName, String password, HttpServletRequest request, HttpServletResponse response){
@@ -56,16 +69,16 @@ public class UserController {
             return map;
         }
     }
-    @RequestMapping("/user/check")
-    @ResponseBody
-    public BResult check(HttpServletRequest request){
-        String userName = CookieUtils.getCookieValue(request, "userName");
-        if(userName==null){
-            return BResult.build(400,"null");
-        }else {
-            return BResult.build(200,userName);
-        }
-    }
+//    @RequestMapping("/user/check")
+//    @ResponseBody
+//    public BResult check(HttpServletRequest request){
+//        String userName = CookieUtils.getCookieValue(request, "userName");
+//        if(userName==null){
+//            return BResult.build(400,"null");
+//        }else {
+//            return BResult.build(200,userName);
+//        }
+//    }
     @RequestMapping("/user/logout")
     public String logout(HttpServletRequest request,HttpServletResponse response){
 
@@ -84,5 +97,18 @@ public class UserController {
             BResult bResult = userService.changeAddress(userId, address, phone);
             return bResult;
         }
+    }
+    @RequestMapping("/user/list")
+    @ResponseBody
+    public List<User> userList(HttpServletRequest request){
+        List<User> users = userService.userList();
+        return users;
+    }
+    @RequestMapping("/user/del")
+    @ResponseBody
+    public BResult userDel(Long id){
+        BResult bResult = userService.delUser(id);
+        return bResult;
+
     }
 }

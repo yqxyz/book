@@ -104,6 +104,12 @@
                         <span class="nav-tabel">添加大图</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/admin/userList.html">
+                        <i class="fas fa-list-ul"></i>
+                        <span class="nav-tabel">用户管理</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav><!-- 侧边导航菜单 结束 -->

@@ -23,15 +23,13 @@
 
     <!-- 引入Bootstrap CSS框架 awesome字体-->
     <link href="${pageContext.request.contextPath}/css/bootstrap/3.3.4/bootstrap.min.css" rel="stylesheet">
-
-    <link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- CSS动画框架 -->
     <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
     <!-- Yun+ UI css主文件 -->
     <link href="${pageContext.request.contextPath}/css/yuntheme.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
 </head>
 <body class="gray-bg">
 <div class="middle-box text-center loginscreen animated fadeInDown">
@@ -39,30 +37,23 @@
         <div>
             <h1 class="logo-name">BOOK</h1>
         </div>
-        <h3>欢迎注册为book.com会员</h3>
-        <p>注册一个新帐号</p>
+        <h3>书城</h3>
         <form class="m-t" role="form">
             <div class="form-group">
-                <input type="text" name="userName" class="form-control" placeholder="用户名">
+                <input type="text" class="form-control" placeholder="用户名" name="userName">
             </div>
             <div class="form-group">
-                <input type="email" name="email" class="form-control" placeholder="邮箱">
+                <input type="password" class="form-control" placeholder="密码" name="password">
             </div>
-            <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="密码">
-            </div>
-            <div class="form-group">
-                <div class="checkbox i-checks pull-left">
-                    <label class="no-padding"> <input type="checkbox" name="agree"><i></i> 我已阅读并同意注册协议 </label>
-                    <label id="agree-error" class="error" for="agree" style="display: none">请同意协议</label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">注册</button>
+            <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
 
+            <a href="login#">
+                <small>忘记密码?</small>
+            </a>
             <p class="text-muted text-center">
-                <small>已有帐号?</small>
+                <small>还没有帐号?</small>
             </p>
-            <a class="btn btn-sm btn-white btn-block" href="${pageContext.request.contextPath}/login.html">直接登录</a>
+            <a class="btn btn-sm btn-white btn-block" href="${pageContext.request.contextPath}/register.html">注册新会员</a>
         </form>
         <p class="m-t">
             <small>Yun+ 主题前端框架基于 Bootstrap 3 &copy; 2015</small>
@@ -72,41 +63,46 @@
 
 <!-- 引入主要jQuery 等js框架 -->
 <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap/3.3.4/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.zh-CN.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.serializejson.js"></script>
 <script src="${pageContext.request.contextPath}/css/plugins/toastr/toastr.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap/3.3.4/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="${pageContext.request.contextPath}/css/plugins/iCheck/icheck.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.serializejson.js"></script>
+<script src="${pageContext.request.contextPath}/js/cartStorage.js"></script>
 <script>
-    $(document).ready(function () {
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-    });
     $.validator.setDefaults({
         submitHandler: function () {
-            $.post("${pageContext.request.contextPath}/user/add",
+            $.post("${pageContext.request.contextPath}/user/login",
                 $('.m-t').serializeJSON(),
                 function (data) {
-
-                    if (data.status == 200) {
+                    console.log(data.login);
+                    if (data.login.status == 200) {
                         toastr.options = {
                             "positionClass": "toast-top-center",
-                            "timeOut": "2000"
+                            "timeOut": "1000"
                         };
+                        if(data.cart.status==200){
+                            data.cart.msg.replace('/', '');
+                            var productList = JSON.parse(data.cart.msg);
+                            for (i in productList) {
+                                if (!cart.existproduct(productList[i].id)) {
+                                    cart.addproduct(productList[i]);
+                                }
+                            }
+                        }
                         toastr.options.onHidden = function () {
-                            window.location.href = "${pageContext.request.contextPath}/login"
+                            window.location.href = "${pageContext.request.contextPath}/admin.html"
                         };
                         toastr.options.onclick = function () {
-                            window.location.href = "${pageContext.request.contextPath}/login"
+                            window.location.href = "${pageContext.request.contextPath}/admin.html"
                         };
-                        toastr.success('注册成功,2秒后跳转到登陆页,点击立即跳转');
+                        toastr.success('登陆成功,1秒后跳转到管理页,点击立即跳转');
+                    } else {
+                        toastr.options = {
+                            "positionClass": "toast-top-center"
+                        };
+                        toastr.error(data.login.msg + '登陆失败');
                     }
-
-
                 });
         }
     });
@@ -121,12 +117,7 @@
                 password: {
                     required: true,
                     minlength: 5
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                agree: "required"
+                }
             },
             messages: {
                 userName: {
@@ -136,13 +127,10 @@
                 password: {
                     required: "请输入密码",
                     minlength: "密码长度不能小于 5 个字母"
-                },
-                email: "请输入一个正确的邮箱",
-                agree: "请同意协议"
+                }
             }
         })
     });
 </script>
-
 </body>
 </html>

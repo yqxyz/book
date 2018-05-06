@@ -12,7 +12,7 @@ public class AdminInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String isadmin = CookieUtils.getCookieValue(request, "isadmin");
         if(StringUtils.isBlank(isadmin))
-            response.sendRedirect(request.getContextPath() + "/login.html");
+            response.sendRedirect(request.getContextPath() + "/admin/login");
         if(StringUtils.isNotBlank(isadmin) && isadmin.equals("1")){
             return true;
         }
