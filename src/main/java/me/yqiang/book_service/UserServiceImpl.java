@@ -59,6 +59,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public BResult changePwd(Long id, String pwd) {
+        User user = userMapper.selectByPrimaryKey(id);
+        user.setPassword(DigestUtils.md5DigestAsHex(pwd.getBytes()));
+        int i = userMapper.updateByPrimaryKey(user);
+        if(i==1)
+            return BResult.ok();
+        else
+            return BResult.build(400,"");
+    }
+
+    @Override
     public List<User> userList() {
         List<User> users = userMapper.selectByExample(null);
         return users;

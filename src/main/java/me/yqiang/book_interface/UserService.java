@@ -18,4 +18,6 @@ public interface UserService {
     String validate(String username);
 
     String validate1(String email);
+
+    BResult changePwd(Long id, String pwd);
 }

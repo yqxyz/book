@@ -146,8 +146,8 @@
                             <li><a href="${pageContext.request.contextPath}/orderList.html"><i class="fas fa-list-ul"></i>
                                 订单</a></li>
                         </c:if>
-                        <li><c:if test="${cookie.userName.value!=null && not empty cookie.userName.value}"><i
-                                class="fas fa-user"></i></i> ${cookie.userName.value}</c:if>
+                        <li><c:if test="${cookie.userName.value!=null && not empty cookie.userName.value}"><a href="/user/info"><i
+                                class="fas fa-user"></i> ${cookie.userName.value}</a></c:if>
                             <c:if test="${cookie.userName.value==null || empty cookie.userName.value}"><a href="/login"><i
                                     class="fas fa-sign-in-alt"></i></i> 登录</a></c:if></li>
                         <li>

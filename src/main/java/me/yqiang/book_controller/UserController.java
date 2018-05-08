@@ -5,8 +5,10 @@ import me.yqiang.book_pojo.User;
 import me.yqiang.book_interface.UserService;
 import me.yqiang.pojo.BResult;
 import me.yqiang.utils.CookieUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,12 +37,30 @@ public class UserController {
     public String registerIndex(){
         return "register";
     }
+    @RequestMapping("/user/info")
+    public String infoIndex(Model model,HttpServletRequest request){
+        String userId = CookieUtils.getCookieValue(request, "userId");
+        if(StringUtils.isBlank(userId)){
+            return "login";
+        }
+        User user = userService.findUser(Long.valueOf(userId));
+        user.setPassword(null);
+        model.addAttribute(user);
+        return "info";
+    }
     @RequestMapping("/user/add")
     @ResponseBody
     public BResult addUser(User user){
         BResult bResult = userService.addUser(user);
         return bResult;
     }
+    @RequestMapping("/user/pwd")
+    @ResponseBody
+    public BResult changPwd(String pwd,Long id){
+        BResult bResult = userService.changePwd(id,pwd);
+        return bResult;
+    }
+
     @RequestMapping("/user/validate")
     @ResponseBody
     public String userValidate(String username){

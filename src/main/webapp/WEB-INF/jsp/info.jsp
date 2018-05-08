@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox-title">
-                            <h5>订单</h5>
+                            <h5>信息</h5>
                         </div>
                         <div class="ibox-content">
 
@@ -96,44 +96,27 @@
                                     <thead>
                                     <tr>
                                         <th>地址:<input name="address" type="text" value="${user.address}"
-                                                      style="width: 350px" disabled></th>
-                                        <th>手机:<input name="phone" type="text" value="${user.phone}" disabled></th>
-                                        <th>
-                                            <button class="editBtn btn btn-primary btn-sm">修改</button>
+                                                      style="width: 350px;margin-right: 50px" disabled>
+                                            手机:<input name="phone" type="text" value="${user.phone}" disabled>
+                                            <button class="editBtn btn btn-primary btn-sm" style="margin-left: 30px">修改</button>
                                             <button style="margin-left: 10px" class="saveBtn btn btn-primary btn-sm">
                                                 保存
                                             </button>
                                         </th>
+                                        <th></th>
                                     </tr>
                                     <tr>
-                                        <th>清单</th>
-                                        <th>数量</th>
-                                        <th>单价</th>
-                                        <th>总价</th>
+                                        <th>
+                                            密码:<input name="password" type="password">
+                                            <button class="editpwd btn btn-primary btn-sm" style="margin-left: 30px">修改</button>
+                                        </th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody class="orderInfo">
                                     </tbody>
                                 </table>
                             </div>
-
-                            <!-- /table-responsive -->
-
-                            <table class="table invoice-total">
-                                <tbody>
-                                <tr>
-                                    <td><strong>总价：</strong>
-                                    </td>
-                                    <td class="totalAmount">&yen;00.00</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="text-right">
-                                <button class="suborder btn btn-primary"> 提交订单</button>
-                            </div>
-
-                            <%--<div class="well m-t"><strong>注意：</strong> 请在30日内完成付款，否则订单会自动取消。--%>
-                            <%--</div>--%>
                         </div>
                     </div>
                 </div>
@@ -181,82 +164,10 @@
             })
 
     });
-    var order = localStorage.getItem('order');
-    order = JSON.parse(order);
-    var productList = new Array();
-    for (i in order) {
-        productList.push(cart.getproduct(order[i]));
-    }
-    $('.suborder').click(function () {
-        if ($('[name=address]').is(':disabled') && $('[name=address]').val() != '' && $('[name=phone]').val() != '') {
-            $.ajax({
-                url: '${pageContext.request.contextPath}/order/make',
-                type: 'POST',
-                data: JSON.stringify(productList),
-                contentType: 'application/json',
-                dataType: 'json',
-                success: function (data) {
-
-                }
-            });
-            for (i in order) {
-                cart.deleteproduct(order[i]);
-            }
-            saveCart();
-            document.location.href = '/orderList.html';
-        } else {
-            toastr.options = {
-                "positionClass": "toast-top-center"
-            }
-            toastr.error("请填写地址并保存");
-        }
-    });
-
-    var html = '';
-    for (i in productList) {
-        html += "                          <tr>\n" +
-            "                                                <td>\n" +
-            "                                                    <div><strong>" + productList[i].name + "</strong>\n" +
-            "                                                    </div>\n" +
-            "                                                </td>\n" +
-            "                                                <td>" + productList[i].num + "</td>\n" +
-            "                                                <td>&yen;" + productList[i].price + "</td>\n" +
-            "                                                <td>&yen;" + (productList[i].num * productList[i].price).toFixed(2) + "</td>\n" +
-            "                                            </tr>";
-    }
-    $('.orderInfo').html(html);
-    $('.totalAmount').html("￥ " + orderdetail.totalAmount.toFixed(2));
-    $('.delBtn1').click(function () {
-        $('.' + $(this).attr('itemId')).remove();
-        cart.deleteproduct($(this).attr('itemId'));
-        $('.totalNumber').html(orderdetail.totalNumber)
-        $('.totalAmount').html("￥ " + orderdetail.totalAmount.toFixed(2));
-
-
-    });
-    $('.minBtn').click(function () {
-        $(this).next().val($(this).next().val() - 1);
-        if ($(this).next().val() < 1)
-            $(this).next().val(1);
-        $(this).next().focusout();
-    });
-    $('.addBtn').click(function () {
-        $(this).prev().val(Number($(this).prev().val()) + 1);
-        $(this).prev().focusout();
-    });
-    $('.number').focusout(function () {
-        if (!isNaN($(this).val())) {
-            if ($(this).val() < 1)
-                $(this).val(1);
-            var id = $(this).parent().parent().attr('class');
-            cart.updateproductnum(id, $(this).val());
-            $(this).parent().nextAll().last().prev().html("￥" + (cart.getproduct(id).price * cart.getproduct(id).num).toFixed(2));
-            $('.totalAmount').html("￥ " + orderdetail.totalAmount.toFixed(2));
-            $('.totalNumber').html(orderdetail.totalNumber)
-        } else {
-            $(this).val(1);
-        }
-
+    $('.editpwd').click(function () {
+        $.post('/user/pwd',{pwd:$('[name=password]').val(),id:'${user.userId}'},function (data) {
+            console.log(data)
+        })
     })
 </script>
 </body>

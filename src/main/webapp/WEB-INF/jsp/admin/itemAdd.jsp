@@ -93,7 +93,7 @@
                 </li>
 
                 <li>
-                    <a href="/admin/allOrderList.html">
+                    <a href="/admin/oderList.html">
                         <i class="fas fa-list-ul"></i>
                         <span class="nav-tabel">订单列表</span>
                     </a>
