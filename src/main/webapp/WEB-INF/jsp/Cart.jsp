@@ -318,7 +318,7 @@
             localStorage.setItem('order', JSON.stringify(checkedArray));
             document.location.href = '/order';
         }
-        console.log("已选复选框的值：" + checkedArray + "\n" + "选中的复选框个数：" + count);
+       // console.log("已选复选框的值：" + checkedArray + "\n" + "选中的复选框个数：" + count);
 
     });
 </script>

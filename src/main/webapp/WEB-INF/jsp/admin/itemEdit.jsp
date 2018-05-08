@@ -299,7 +299,7 @@
 <script>
     $('#addbtn').click(function () {
         $.post("/item/edit", $("#form1").serializeJSON(), function (data) {
-            console.log(data);
+            //console.log(data);
             window.location.href = "/itemList";
         })
     });
@@ -329,7 +329,7 @@
         /* acceptedFiles: ".bmp,.jpg,.jpeg,.gif,.png", */
         init: function () {
             this.on("removedfile", function (file) {
-                console.log("File " + file.name + " removed");
+               // console.log("File " + file.name + " removed");
             });
         },
         success: function (file, data) {

@@ -89,7 +89,7 @@
 
 
     $('.code').click(function () {
-        console.log(1)
+        //console.log(1)
         $(this).attr('src','/validate?'+new Date().getTime());
     });
     $(document).ready(function () {

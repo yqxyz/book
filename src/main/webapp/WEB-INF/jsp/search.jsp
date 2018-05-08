@@ -270,7 +270,7 @@
     });
 
     $.get('/itemCat/list', function (data) {
-        console.log(data);
+       // console.log(data);
         var html = "<a href='/index'><li class=\"p-cat text-center\">分类</li></a>";
         for (i in data) {
             html += "<a href='/itemCat/" + data[i].id + "'><li class=\"p-cat text-center\" style='overflow: hidden'>" + data[i].name + "</li></a>";

@@ -75,7 +75,7 @@
             $.post("${pageContext.request.contextPath}/user/login",
                 $('.m-t').serializeJSON(),
                 function (data) {
-                    console.log(data.login);
+                  //  console.log(data.login);
                     if (data.login.status == 200) {
                         toastr.options = {
                             "positionClass": "toast-top-center",

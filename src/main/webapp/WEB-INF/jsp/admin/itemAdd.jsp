@@ -242,7 +242,7 @@
 <script>
     $('#addbtn').click(function () {
         $.post("/item/add", $("#form1").serializeJSON(), function (data) {
-            console.log(data);
+            //console.log(data);
             //window.location.href="/addItem";
         })
     });
@@ -268,11 +268,11 @@
         /* acceptedFiles: ".bmp,.jpg,.jpeg,.gif,.png", */
         init: function () {
             this.on("removedfile", function (file) {
-                console.log("File " + file.name + " removed");
+               // console.log("File " + file.name + " removed");
             });
         },
         success: function (file, data) {
-            console.log(data.data.name);
+           // console.log(data.data.name);
             file.newName = data.data.name;
             if ($("#img").length == 0) {
                 $("#form1").append("<input value=" + data.data.name + ", name='image' type='hidden' id='img'/>");

@@ -217,7 +217,7 @@
             '/user/changeAddress',
             {address: $('[name=address]').val(), phone: $('[name=phone]').val()},
             function (data) {
-                console.log(data);
+                //console.log(data);
             })
 
     });

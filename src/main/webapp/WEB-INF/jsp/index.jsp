@@ -279,7 +279,7 @@
         $('#form1').submit();
     });
     $.get('/itemCat/list', function (data) {
-        console.log(data);
+        //console.log(data);
         var html = "<a href='/index'><li class=\"p-cat text-center\">分类</li></a>";
         for (i in data) {
             html += "<a href='/itemCat/" + data[i].id + "'><li class=\"p-cat text-center\" style='overflow: hidden'>" + data[i].name + "</li></a>";
@@ -287,7 +287,7 @@
         $('.cat-list').html(html);
     });
     $.get('/item/recent', function (data) {
-        console.log(data);
+      //  console.log(data);
         var html = "<a href='/index'><li class=\"p-cat text-center\">最新上架</li></a>";
         for (i in data) {
             html += "<a href='/item/" + data[i].itemId + "'><li class=\"p-cat text-center\" style='overflow: hidden'>" + data[i].name + "</li></a>";
@@ -295,7 +295,7 @@
         $('.recent-list').html(html);
     })
     $.get('/item/hot', function (data) {
-        console.log(data);
+       // console.log(data);
         var html = "<a href='/index'><li class=\"p-cat text-center\">热销排行</li></a>";
         for (i in data) {
             html += "<a href='/item/" + data[i].itemId + "'><li class=\"p-cat text-center\" style='overflow: hidden'>" + data[i].name + "</li></a>";

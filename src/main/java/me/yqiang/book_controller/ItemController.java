@@ -68,11 +68,11 @@ public class ItemController {
         Item item1 = (Item) item.getData();
         String[] split = item1.getImage().split(",");
         if(item1!=null){
-            String fileName = request.getSession().getServletContext().getRealPath("/")+"img\\item\\"+split[0]+".jpg";
+            String fileName = request.getSession().getServletContext().getRealPath("/")+"img/item/"+split[0]+".jpg";
             File file = new File(fileName);
             if(!(file.exists() && file.canRead())) {
                 file = new File(request.getSession().getServletContext().getRealPath("/")
-                        + "img\\blank.jpg");
+                        + "img/blank.jpg");
             }
             FileInputStream inputStream = new FileInputStream(file);
             byte[] data = new byte[(int)file.length()];

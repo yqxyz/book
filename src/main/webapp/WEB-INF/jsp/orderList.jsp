@@ -336,7 +336,7 @@
         $('#confirm').click(function () {
             $('#myModal6').modal('hide');
             $.post("/order/del", idData, function (data) {
-                console.log(data);
+               // console.log(data);
 
                 toastr.options = {
                     "positionClass": "toast-top-center",
