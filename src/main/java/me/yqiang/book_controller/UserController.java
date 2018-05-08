@@ -2,7 +2,7 @@ package me.yqiang.book_controller;
 
 import me.yqiang.book_interface.CartService;
 import me.yqiang.book_pojo.User;
-import me.yqiang.book_service.UserServiceImpl;
+import me.yqiang.book_interface.UserService;
 import me.yqiang.pojo.BResult;
 import me.yqiang.utils.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.Map;
 @Controller
 public class UserController {
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
     @Autowired
     CartService cartService;
     @RequestMapping("/login")
