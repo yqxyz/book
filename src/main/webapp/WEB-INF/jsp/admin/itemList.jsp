@@ -258,10 +258,10 @@
                         "timeOut": "1000"
                     };
                     toastr.options.onHidden = function () {
-                        window.location.href = "${pageContext.request.contextPath}/itemList.html"
+                        window.location.href = "${pageContext.request.contextPath}/admin/itemList.html"
                     };
                     toastr.options.onclick = function () {
-                        window.location.href = "${pageContext.request.contextPath}/itemList.html"
+                        window.location.href = "${pageContext.request.contextPath}/admin/itemList.html"
                     };
                     toastr.success("删除成功");
 

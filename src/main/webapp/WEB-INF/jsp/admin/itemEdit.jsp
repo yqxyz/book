@@ -300,7 +300,7 @@
     $('#addbtn').click(function () {
         $.post("/item/edit", $("#form1").serializeJSON(), function (data) {
             //console.log(data);
-            window.location.href = "/itemList";
+            window.location.href = "/admin/itemList";
         })
     });
 

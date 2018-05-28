@@ -151,7 +151,7 @@ public final class CookieUtils {
             	String domainName = getDomainName(request);
             	System.out.println(domainName);
                 if (!"localhost".equals(domainName)) {
-                	cookie.setDomain(domainName);
+                	cookie.setDomain("10.0.139.213");
                 }
             }
             cookie.setPath("/");
@@ -181,7 +181,7 @@ public final class CookieUtils {
             	String domainName = getDomainName(request);
             	System.out.println(domainName);
                 if (!"localhost".equals(domainName)) {
-                	cookie.setDomain(domainName);
+                	cookie.setDomain("10.0.139.213");
                 }
             }
             cookie.setPath("/");

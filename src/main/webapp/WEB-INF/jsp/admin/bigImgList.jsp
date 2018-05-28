@@ -250,10 +250,10 @@
                         "timeOut": "1000"
                     };
                     toastr.options.onHidden = function () {
-                        window.location.href = "${pageContext.request.contextPath}/bigImgList.html"
+                        window.location.href = "${pageContext.request.contextPath}/admin/bigImgList.html"
                     };
                     toastr.options.onclick = function () {
-                        window.location.href = "${pageContext.request.contextPath}/bigImgList.html"
+                        window.location.href = "${pageContext.request.contextPath}/admin/bigImgList.html"
                     };
                     toastr.success("删除成功");
 
